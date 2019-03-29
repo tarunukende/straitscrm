@@ -7,8 +7,6 @@ var adminHelper = {
     tempObject: {},
     mkConfig: {},
     init: function () {
-//        this.initNotification();
-//        this.callNotification();
         this.createNotification();
     },
     setbaseURL: function () {

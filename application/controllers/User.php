@@ -8,7 +8,6 @@ class User extends CI_Controller {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('data_model');
-//         $this->load->library('excel');
     }
 
     public function index() {
@@ -38,7 +37,7 @@ class User extends CI_Controller {
         }
     }
 
-    public function viewlist($page = 1) {
+    /*public function viewlist($page = 1) {
         if ($this->session->userdata('logged_in') == 'Admin') {
             $per_page = 10;
             $data['pagetitle'] = 'All Leads';
@@ -72,7 +71,7 @@ class User extends CI_Controller {
         } else {
             redirect(base_url());
         }
-    }
+    }*/
 
     public function chngExc($sales_id, $id) {
         if ($this->data_model->edit(array('sales_id' => $sales_id), 'lead_sales', $id)) {
@@ -197,38 +196,6 @@ class User extends CI_Controller {
 				</div>
 			</div>
 		</div>';
-    }
-
-    public function addLead() {
-        if ($_POST) {
-            $add = $this->data_model->add($_POST, 'leads');
-
-            $Record = $this->data_model->getSimilarData(array('field' => 'name', 'value' => $_POST['region']), 'regions')[0];
-            $exc_count = $this->data_model->getByCondition(array('field' => 'region_id', 'value' => $Record['id']), 'lead_exec');
-            $AllExc = $this->data_model->getByCondition(array('field' => 'region_id', 'value' => $Record['id']), 'sales');
-            $Excs = $this->data_model->getAllByRegion($Record['id']);
-            $Count = count($Excs);
-
-            if ($Excs[0]['id']) {
-                $assign = $this->data_model->add(array('lead_id' => $add, 'sales_id' => $Excs[0]['id']), 'lead_sales');
-            } else {
-                $assign = $this->data_model->add(array('lead_id' => $add, 'sales_id' => 6), 'lead_sales');
-            }
-            $this->data_model->edit(array('flag' => 1), 'sales', $Excs[0]['id']);
-            if ($Count == 1) {
-                foreach ($AllExc as $Exc) {
-                    $this->data_model->edit(array('flag' => 0), 'sales', $Exc['id']);
-                }
-            }
-
-            if ($add && $assign) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
     }
 
     public function logout($path = '') {

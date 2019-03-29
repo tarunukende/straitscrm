@@ -23,7 +23,7 @@ class Api extends CI_Controller {
             $insertData['region'] = $_POST['region'];
             $insertData['message'] = $_POST['message'];
             $insertData['ip'] = $_POST['ip'];
-            $insertData['status'] = $_POST['status'];
+            //$insertData['status'] = $_POST['status'];
             $insertData['website'] = $_POST['website'];
             $insertData['source'] = $_POST['source'];
             $insertData['status'] = "1";
@@ -32,8 +32,8 @@ class Api extends CI_Controller {
             $add = $this->notification_model->addNotification($insertData, 'leads');
 
             $Record = $this->data_model->getSimilarData(array('field' => 'name', 'value' => $_POST['region']), 'regions')[0];
-            $exc_count = $this->data_model->getByCondition(array('field' => 'region_id', 'value' => $Record['id']), 'lead_exec');
-            $AllExc = $this->data_model->getByCondition(array('field' => 'region_id', 'value' => $Record['id']), 'sales');
+            /*$exc_count = $this->data_model->getByCondition(array('field' => 'region_id', 'value' => $Record['id']), 'lead_exec');*/
+            $AllExc = $this->data_model->getByRegionid(array('field' => 'region_id', 'value' => $Record['id']), 'sales');
             $Excs = $this->data_model->getAllByRegion($Record['id']);
             $Count = count($Excs);
 
@@ -55,7 +55,16 @@ class Api extends CI_Controller {
                 return false;
             }
         } else {
-            return false;
+            /*return false;*/
+
+            $AllExc = $this->data_model->getByRegionid(array('field' => 'region_id', 'value' => 1), 'sales');
+            
+            $Excs = $this->data_model->getAllByRegion(1);
+            $Count = count($Excs);
+
+            print_r($Excs);die;
+            $data['pagetitle'] = 'Add Leads';
+            $this->load->view("Leads/addlead", $data);
         }
     }
 

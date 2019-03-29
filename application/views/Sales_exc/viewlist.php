@@ -1,8 +1,7 @@
-<?php $this->load->view('templates/header') ?>
-<?php $this->load->view('Sales_exc/templates/sidemenu') ?>
+<?php $this->load->view('templates/header') ;
+$this->load->view('Sales_exc/templates/sidemenu'); ?>
 <div class="content-wrapper">
     <section class="content">
-        <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title"><?php echo $pagetitle ?></h3>
@@ -13,7 +12,6 @@
                         <strong>Info!</strong> <?php echo $this->session->flashdata('msg') ?>
                     </div>
                 <?php endif ?>
-                <!-- <?php print_r($Records['followup_date']); ?> -->
                 <input type="text" name="status" id="status" class="status" value="<?php echo $status; ?>"/>
                 <table id="posts" class="table table-bordered table-striped">
                     <thead>
@@ -36,6 +34,4 @@
     </section>
 </div>
 <?php $this->load->view('templates/footer') ?>
-
-
 <script src="<?php echo base_url() . 'assets/' ?>js/salesexecuetiveHelper.js"></script>

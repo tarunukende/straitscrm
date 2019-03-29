@@ -7,8 +7,6 @@ var salesexecuetiveHelper = {
     tempObject: {},
     mkConfig: {},
     init: function () {
-//        this.initNotification();
-//        this.callNotification();
         this.createNotification();
     },
     setbaseURL: function () {
@@ -81,34 +79,6 @@ var salesexecuetiveHelper = {
             shadow: true,
             width: "250px"
         });
-//        setTimeout(function () {
-//            notice.update({
-//                title: false
-//            });
-//            var interval = setInterval(function () {
-//                percent += 2;
-//                var options = {
-////                    text: percent + "% complete."
-//                    text: '<a class="details" href="javascript:void(0);" data-id="1" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Riley VanHorn From United States asked for Global Jail Management Software Market Size, Status and Forecast 2025">VanHorn From United States asked for Global Jail Management Software Market Size, Status and Forecast 2025</a>'
-//                };
-////                if (percent == 80)
-////                    options.title = "Almost There";
-//                if (percent >= 100) {
-//                    window.clearInterval(interval);
-//                    options.title = "Done!";
-//                    options.type = "success";
-//                    options.hide = true;
-//                    options.buttons = {
-//                        closer: true,
-//                        sticker: true
-//                    };
-//                    options.icon = 'fa fa-check';
-//                    options.shadow = true;
-//                    options.width = PNotify.prototype.options.width;
-//                }
-//                notice.update(options);
-//            }, 120);
-//        }, 200);
 
     }, getNotification: function () {
         $.ajax({

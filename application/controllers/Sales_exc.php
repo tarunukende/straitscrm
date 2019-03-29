@@ -185,7 +185,7 @@ class Sales_exc extends CI_Controller {
     }
 
     public function getAllexecutive() {
-        $json_data = $this->data_model->getAll('sales');
+        $json_data = $this->data_model->getAllActive('sales');
 //        $json_data = array("data" => $data);
         echo json_encode($json_data);
     }

@@ -19,8 +19,8 @@ class Data_model extends CI_Model {
     }
 
     public function getAllActive($tbl) {
+        $this->db->where("status", 1);
         $sql = $this->db->get($tbl);
-        $this->db->where("status", "1");
         if ($sql->num_rows() > 0) {
             return $sql->result_array();
         } else {
@@ -55,7 +55,18 @@ class Data_model extends CI_Model {
 
     public function getByCondition($Array, $table) {
         $this->db->where($Array['field'], $Array['value']);
+        $sql = $this->db->get($table);
+        if ($sql->num_rows() > 0) {
+            return $sql->result_array();
+        } else {
+            return false;
+        }
+    }
 
+    public function getByRegionid($Array, $table) {
+        $this->db->select('name ,region_id');
+        $this->db->like($Array['field'], $Array['value']);
+        $this->db->where('status', 1);
         $sql = $this->db->get($table);
         if ($sql->num_rows() > 0) {
             return $sql->result_array();
